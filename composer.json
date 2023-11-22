@@ -1,0 +1,24 @@
+{
+    "name": "peergum/laravel-geodb",
+    "description": "Provides Laravel with geographical databases and APIs",
+    "keywords": [
+        "laravel",
+        "countries",
+        "cities",
+        "states",
+        "API"
+    ],
+    "license": "Apache2",
+    "autoload": {
+        "psr-4": {
+            "Peergum\\LaravelGeodb\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Phil Hilger",
+            "email": "phil@peergum.com"
+        }
+    ],
+    "require": {}
+}
