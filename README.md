@@ -16,8 +16,10 @@ through a Facade, or from any reactive view, using internal APIs.
 This package is a work in progress. Please come back soon for more.
 
 ---
-## License
-Apache2
+**License**: Apache2
 
-## Author
-Phil "PeerGum" Hilger
+**Author**: Phil "PeerGum" Hilger
+
+**About Me**:
+- [My Page](https://phil.hilger.ca)
+- [Github](https://github.com/peergum)

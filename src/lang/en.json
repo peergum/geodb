@@ -1,0 +1,5 @@
+{
+    "Country" : "[0]No Countries|[1]{count} Country|[2,*]{count} Countries",
+    "State" : "[0]No States|[1]{count} State|[2,*]{count} States",
+    "City" : "[0]No Cities|[1]{count} City|[2,*]{count} Cities"
+}
