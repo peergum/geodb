@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Providers;
+namespace Peergum\GeoDB\Providers;
 
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
+use Peergum\GeoDB\Console\Commands\GeoDBInstall;
 
 class GeoDBProvider extends ServiceProvider
 {
@@ -26,6 +28,8 @@ class GeoDBProvider extends ServiceProvider
         $this->publishMigrations();
         $this->publishSeeds();
         $this->publishTranslations();
+        AboutCommand::add('Laravel GeoDB', fn() => ['Version' => GeoDBInstall::VERSION]);
+
     }
 
     /**
@@ -33,7 +37,7 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishMigrations()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     /**
@@ -49,13 +53,13 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishRoutes()
     {
-        $this->loadRoutesFrom(__DIR__ . "/../../routes/api.php");
-        $this->loadRoutesFrom(__DIR__ . "/../../routes/web.php");
+        $this->loadRoutesFrom(__DIR__ . "/../routes/api.php");
+        $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
     }
 
     private function publishViews()
     {
-        $this->loadViewsFrom(__DIR__ . "/../../resources/views", "geodb");
+        $this->loadViewsFrom(__DIR__ . "/../resources/views", "geodb");
     }
 
     /**
@@ -64,7 +68,7 @@ class GeoDBProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->commands([
-            \App\Console\geoDBInstall::class,
+            GeoDBInstall::class,
         ]);
     }
 

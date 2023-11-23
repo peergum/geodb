@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace Peergum\GeoDB\Repositories;
 
 use App\Interfaces\CityRepositoryInterface;
 use App\Interfaces\CountryRepositoryInterface;

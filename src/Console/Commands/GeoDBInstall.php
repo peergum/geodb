@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace Peergum\GeoDB\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -26,6 +26,6 @@ class GeoDBInstall extends Command
      */
     public function handle()
     {
-        //
+        echo "GeoDB {$this::VERSION} Installed.\n";
     }
 }

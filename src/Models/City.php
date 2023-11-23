@@ -1,29 +1,39 @@
 <?php
 
-namespace App\Models;
+namespace Peergum\GeoDB\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class State extends Model
+class City extends Model
 {
     use HasFactory;
 
     protected $attributes = [
         'name',
+        'latitude',
+        'longitude',
         'feature_class',
         'feature_code',
-    ];
+        'admin1',
+        'admin2',
+        'admin3',
+        'admin4',
+        'population',
+        'elevation',
+        'timezone',
+        'updated_at',
+        ];
 
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
 
-    public function cities(): HasMany
+    public function state(): BelongsTo
     {
-        return $this->hasMany(City::class);
+        return $this->belongsTo(State::class);
     }
+
 }
