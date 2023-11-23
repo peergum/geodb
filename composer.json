@@ -1,5 +1,5 @@
 {
-    "name": "peergum/geodb",
+    "name": "peergum/laravel-geodb",
     "description": "Provides Laravel with geographical databases and APIs",
     "keywords": [
         "laravel",
