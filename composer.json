@@ -1,5 +1,5 @@
 {
-    "name": "peergum/laravel-geodb",
+    "name": "peergum/geodb",
     "description": "Provides Laravel with geographical databases and APIs",
     "keywords": [
         "laravel",
@@ -8,17 +8,30 @@
         "states",
         "API"
     ],
-    "license": "Apache2",
-    "autoload": {
-        "psr-4": {
-            "Peergum\\LaravelGeodb\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Phil Hilger",
-            "email": "phil@peergum.com"
+            "email": "phil@peergum.com",
+            "role" : "Developer"
         }
     ],
-    "require": {}
+    "license": "Apache-2.0",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Peergum\\GeoDB\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Peergum\\GeoDB\\Providers\\GeoDBProvider"
+            ]
+        }
+    },
+    "minimum-stability" : "stable",
+    "prefer-stable" : true
 }

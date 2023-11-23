@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces;
+namespace Peergum\GeoDB\Interfaces;
 
 interface CountryRepositoryInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Peergum\GeoDB\Http\Controllers;
 
 use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
