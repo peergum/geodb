@@ -1,11 +1,10 @@
 <?php
 
-namespace Peergum\GeoDB\Database\Seeders;
+namespace database\seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CountrySeeder extends Seeder
+class CitySeeder extends Seeder
 {
     /**
      * Run the database seeds.

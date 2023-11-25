@@ -1,23 +1,23 @@
 <?php
 
-namespace Peergum\GeoDB\Database\Factories;
+namespace database\factories;
 
+use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Country;
 
 /**
- * @template TModel of \App\Models\Country
+ * @template TModel of \App\Models\State
  *
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<TModel>
  */
-class CountryFactory extends Factory
+class StateFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var class-string<TModel>
      */
-    protected $model = Country::class;
+    protected $model = State::class;
 
     /**
      * Define the model's default state.
@@ -28,12 +28,8 @@ class CountryFactory extends Factory
     {
         return [
             'name' => $this->faker->country,
-            'cc' => $this->faker->lexify('AA'),
-            'cc2' => $this->faker->lexify('AAA'),
             'feature_class' => $this->faker->word,
             'feature_code' => $this->faker->word,
-            'latitude' => $this->faker->latitude,
-            'longitude' => $this->faker->longitude,
         ];
     }
 }

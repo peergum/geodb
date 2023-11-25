@@ -2,12 +2,8 @@
 
 namespace Peergum\GeoDB\Repositories;
 
-use App\Interfaces\CityRepositoryInterface;
-use App\Interfaces\CountryRepositoryInterface;
-use App\Interfaces\StateRepositoryInterface;
-use App\Models\City;
-use App\Models\Country;
-use App\Models\State;
+use Peergum\GeoDB\Interfaces\CityRepositoryInterface;
+use Peergum\GeoDB\Models\City;
 
 class CityRepository implements CityRepositoryInterface
 {
@@ -34,7 +30,7 @@ class CityRepository implements CityRepositoryInterface
         City::create($cityDetails);
     }
 
-    public function updateState($cityId, array $newDetails)
+    public function updateCity($cityId, array $newDetails)
     {
         City::findOrFail($cityId)->first()->update($newDetails);
     }

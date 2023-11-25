@@ -14,10 +14,7 @@ class Country extends Model
         'name',
         'cc',
         'cc2',
-        'feature_class',
-        'feature_code',
-        'latitude',
-        'longitude',
+        'lang',
     ];
 
     public function states(): HasMany

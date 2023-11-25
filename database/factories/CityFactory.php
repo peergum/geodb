@@ -1,9 +1,9 @@
 <?php
 
-namespace Peergum\GeoDB\Database\Factories;
+namespace database\factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\City;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @template TModel of \App\Models\City

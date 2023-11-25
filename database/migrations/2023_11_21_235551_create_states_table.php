@@ -15,8 +15,18 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->index();
+            $table->string('ascii_name')->index();
             $table->string('feature_class')->index();
             $table->string('feature_code')->index();
+            $table->float('latitude')->nullable()->index();
+            $table->float('longitude')->nullable()->index();
+            $table->string('admin1')->nullable()->index();
+            $table->string('admin2')->nullable()->index();
+            $table->string('admin3')->nullable()->index();
+            $table->string('admin4')->nullable()->index();
+            $table->unsignedMediumInteger('population')->nullable()->index();
+            $table->float('elevation')->nullable()->index();
+            $table->string('timezone')->nullable()->index();
             $table->foreignId('country_id')->constrained();
         });
     }
