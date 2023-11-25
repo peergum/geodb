@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class GeoDBInstall extends Command
 {
-    const VERSION = "v0.1-&alpha;";
+    const VERSION = "v0.1-alpha";
     /**
      * The name and signature of the console command.
      *
@@ -26,6 +26,6 @@ class GeoDBInstall extends Command
      */
     public function handle()
     {
-        echo "GeoDB {$this::VERSION} Installed.\n";
+        echo "GeoDB ".self::VERSION." Installed.\n";
     }
 }

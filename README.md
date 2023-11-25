@@ -1,5 +1,7 @@
-# Laravel GeoDB
 
+![Logo](public/laravel-geodb.png)
+
+# Laravel GeoDB
 A Laravel package providing geographical information to your site
 
 **Current Version**: 0.1-&alpha;

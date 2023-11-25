@@ -2,12 +2,21 @@
 
 namespace Peergum\GeoDB\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Models\City;
+use Peergum\GeoDB\Repositories\CityRepository;
 
 class CityController extends Controller
 {
+    private CityRepository $cityRepository;
+
+    public function __construct(CityRepository $cityRepository)
+    {
+        $this->cityRepository = $cityRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */

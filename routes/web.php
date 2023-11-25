@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Peergum\GeoDB\Console\Commands\GeoDBInstall;
+use Peergum\GeoDB\Models\City;
+use Peergum\GeoDB\Models\Country;
+use Peergum\GeoDB\Models\State;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +23,9 @@ Route::get('/', function () {
 
 Route::get('/geodb', function () {
     return view('geodb::geodb', [
-        'countries' => \App\Models\Country::count(),
-        'states' => \App\Models\State::count(),
-        'cities' => \App\Models\City::count()
+        'countries' => Country::count(),
+        'states' => State::count(),
+        'cities' => City::count(),
+        'version' => GeoDBInstall::VERSION
     ]);
 });

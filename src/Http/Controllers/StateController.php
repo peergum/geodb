@@ -2,12 +2,21 @@
 
 namespace Peergum\GeoDB\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStateRequest;
 use App\Http\Requests\UpdateStateRequest;
 use App\Models\State;
+use Peergum\GeoDB\Repositories\StateRepository;
 
 class StateController extends Controller
 {
+    private StateRepository $stateRepository;
+
+    public function __construct(StateRepository $stateRepository)
+    {
+        $this->stateRepository = $stateRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */

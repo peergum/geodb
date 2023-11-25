@@ -11,7 +11,9 @@ class City extends Model
     use HasFactory;
 
     protected $attributes = [
+        'id',
         'name',
+        'ascii_name',
         'latitude',
         'longitude',
         'feature_class',

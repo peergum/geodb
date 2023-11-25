@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\StateController;
+use Peergum\GeoDB\Http\Controllers\CityController;
+use Peergum\GeoDB\Http\Controllers\CountryController;
+use Peergum\GeoDB\Http\Controllers\StateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +18,7 @@ use App\Http\Controllers\StateController;
 */
 
  Route::middleware('auth:sanctum')->group(function() {
-     Route::resource('countries', CountryController::class);
-     Route::resource('states', StateController::class);
-     Route::resource('cities', CityController::class);
+     Route::resource('countries', CountryController::class)->only('index','show');
+     Route::resource('states', StateController::class)->only('index','show');;
+     Route::resource('cities', CityController::class)->only('index','show');;
  });

@@ -4,6 +4,7 @@ namespace Peergum\GeoDB\Providers;
 
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
+use Peergum\GeoDB\Console\Commands\GeoDBDownload;
 use Peergum\GeoDB\Console\Commands\GeoDBInstall;
 
 class GeoDBProvider extends ServiceProvider
@@ -15,7 +16,7 @@ class GeoDBProvider extends ServiceProvider
     {
         $this->registerCommands();
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/geodb.php', 'geodb'
+            __DIR__ . '/../../config/geodb.php', 'geodb'
         );
 
     }
@@ -28,6 +29,9 @@ class GeoDBProvider extends ServiceProvider
         $this->publishMigrations();
         $this->publishSeeds();
         $this->publishTranslations();
+        $this->publishRoutes();
+        $this->publishViews();
+        $this->publishAssets();
         AboutCommand::add('Laravel GeoDB', fn() => ['Version' => GeoDBInstall::VERSION]);
 
     }
@@ -37,7 +41,7 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishMigrations()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
     }
 
     /**
@@ -45,7 +49,7 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishSeeds()
     {
-        $this->publishes([__DIR__ . '/../database/seeders/' => base_path('database/seeders')], 'seeders');
+        $this->publishes([__DIR__ . '/../../database/seeders/' => base_path('database/seeders')], 'seeders');
     }
 
     /**
@@ -53,13 +57,24 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishRoutes()
     {
-        $this->loadRoutesFrom(__DIR__ . "/../routes/api.php");
-        $this->loadRoutesFrom(__DIR__ . "/../routes/web.php");
+        $this->loadRoutesFrom(__DIR__ . "/../../routes/api.php");
+        $this->loadRoutesFrom(__DIR__ . "/../../routes/web.php");
     }
 
     private function publishViews()
     {
-        $this->loadViewsFrom(__DIR__ . "/../resources/views", "geodb");
+        $this->loadViewsFrom(__DIR__ . "/../../resources/views", "geodb");
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/geodb'),
+        ]);
+
+    }
+
+    private function publishAssets()
+    {
+        $this->publishes([
+            __DIR__ . '/../../public' => public_path('vendor/geodb'),
+        ], 'laravel-assets');
     }
 
     /**
@@ -69,6 +84,7 @@ class GeoDBProvider extends ServiceProvider
     {
         $this->commands([
             GeoDBInstall::class,
+            GeoDBDownload::class,
         ]);
     }
 
@@ -77,9 +93,9 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'geodb');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'geodb');
         $this->publishes([
-            __DIR__ . '/../lang' => $this->app->langPath('vendor/geodb')
+            __DIR__ . '/../../lang' => $this->app->langPath('vendor/geodb')
         ]);
     }
 }

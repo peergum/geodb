@@ -2,10 +2,11 @@
 
 namespace Peergum\GeoDB\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
 use App\Models\Country;
-use App\Repositories\CountryRepository;
+use Peergum\GeoDB\Repositories\CountryRepository;
 
 class CountryController extends Controller
 {

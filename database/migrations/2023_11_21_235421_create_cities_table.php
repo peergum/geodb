@@ -14,21 +14,20 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->string('name')->index();
-            $table->string('cc')->index();
-            $table->string('cc2')->index();
+            $table->string('ascii_name')->index();
             $table->string('feature_class')->index();
             $table->string('feature_code')->index();
-            $table->float('latitude')->index();
-            $table->float('longitude')->index();
-            $table->string('admin1')->index();
-            $table->string('admin2')->index();
-            $table->string('admin3')->index();
-            $table->string('admin4')->index();
-            $table->unsignedMediumInteger('population')->index();
-            $table->float('elevation')->index();
-            $table->string('timezone')->index();
+            $table->float('latitude')->nullable()->index();
+            $table->float('longitude')->nullable()->index();
+            $table->string('admin1')->nullable()->index();
+            $table->string('admin2')->nullable()->index();
+            $table->string('admin3')->nullable()->index();
+            $table->string('admin4')->nullable()->index();
+            $table->unsignedMediumInteger('population')->nullable()->index();
+            $table->float('elevation')->nullable()->index();
+            $table->string('timezone')->nullable()->index();
             $table->foreignId('country_id')->constrained();
-            $table->foreignId('state_id')->constrained();
+//            $table->foreignId('state_id')->constrained();
         });
     }
 

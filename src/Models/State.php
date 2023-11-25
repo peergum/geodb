@@ -12,9 +12,21 @@ class State extends Model
     use HasFactory;
 
     protected $attributes = [
+        'id',
         'name',
+        'ascii_name',
+        'latitude',
+        'longitude',
         'feature_class',
         'feature_code',
+        'admin1',
+        'admin2',
+        'admin3',
+        'admin4',
+        'population',
+        'elevation',
+        'timezone',
+        'updated_at',
     ];
 
     public function country(): BelongsTo

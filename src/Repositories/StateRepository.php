@@ -2,10 +2,8 @@
 
 namespace Peergum\GeoDB\Repositories;
 
-use App\Interfaces\CountryRepositoryInterface;
-use App\Interfaces\StateRepositoryInterface;
-use App\Models\Country;
-use App\Models\State;
+use Peergum\GeoDB\Interfaces\StateRepositoryInterface;
+use Peergum\GeoDB\Models\State;
 
 class StateRepository implements StateRepositoryInterface
 {
