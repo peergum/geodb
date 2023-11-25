@@ -3,32 +3,48 @@
 namespace Peergum\GeoDB\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCityRequest;
-use App\Http\Requests\UpdateCityRequest;
-use App\Models\City;
-use Peergum\GeoDB\Repositories\CityRepository;
+use Illuminate\Http\Request;
+use PeerGum\GeoDB\Models\City;
+use Inertia\Inertia;
+use Peergum\GeoDB\Models\Country;
+use Peergum\GeoDB\Repositories\CountryCityRepository;
 
 class CityController extends Controller
 {
-    private CityRepository $cityRepository;
+    private CountryCityRepository $countryCityRepository;
 
-    public function __construct(CityRepository $cityRepository)
+    public function __construct(CountryCityRepository $countryCityRepository)
     {
-        $this->cityRepository = $cityRepository;
+        $this->countryCityRepository = $countryCityRepository;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = $request->get('like', null);
+        $country = $request->get('country',0);
+        switch ($request->get('type', 'all')) {
+            case 'simple':
+                $fields = ['id', 'cc', 'name', 'states','countries.*'];
+                break;
+            default:
+                $fields = ['*'];
+                return response()->json($this->countryCityRepository->getCountryCities($country, $fields));
+        }
+        if (!$filter) {
+            return response()->json($this->countryCityRepository->getCountryCities($country, $fields));
+        } else {
+            return response()->json($this->countryCityRepository->getCitiesLike($filter, $country, ['*']));
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public
+    function create()
     {
         //
     }
@@ -36,7 +52,8 @@ class CityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCityRequest $request)
+    public
+    function store(StoreCityRequest $request)
     {
         //
     }
@@ -44,7 +61,8 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(City $city)
+    public
+    function show(City $city)
     {
         //
     }
@@ -52,7 +70,8 @@ class CityController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(City $city)
+    public
+    function edit(City $city)
     {
         //
     }
@@ -60,7 +79,8 @@ class CityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCityRequest $request, City $city)
+    public
+    function update(UpdateCityRequest $request, City $city)
     {
         //
     }
@@ -68,7 +88,8 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(City $city)
+    public
+    function destroy(City $city)
     {
         //
     }

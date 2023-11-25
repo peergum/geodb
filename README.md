@@ -17,10 +17,13 @@ through a Facade, or from any reactive view, using internal APIs.
 ## Status
 This package is a work in progress. Please come back soon for more.
 
----
-**License**: Apache2
+## ChangeLog
+See [here](./CHANGELOG.md)
 
-**Author**: Phil "PeerGum" Hilger
+---
+**License**: [Apache2](./LICENSE)
+
+**Author**: Phil Hilger AKA "PeerGum"
 
 **About Me**:
 - [My Page](https://phil.hilger.ca)

@@ -18,6 +18,12 @@ return new class extends Migration {
             $table->string('name')->index();
             $table->string('cc')->unique();
             $table->string('cc2')->index();
+            $table->unsignedBigInteger('sqkm')->index();
+            $table->unsignedBigInteger('population')->index();
+            $table->string('continent')->index();
+            $table->string('tld',10)->index();
+            $table->string('currency_code',4)->index();
+            $table->string('currency_name')->index();
             $table->string('lang')->index();
         });
     }

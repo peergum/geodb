@@ -5,7 +5,7 @@ return [
      * "all" for all countries or a two letter code (e.g. US)
      * "ALL" (uppercase) to use one huge file (1.6G), with higher memory consumption (and failure risk)
      */
-    'countries' => 'all',
+    'countries' => 'CA',
 //    'countries' => 'US CA GB AU',
 
     /*

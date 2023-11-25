@@ -17,7 +17,7 @@
             width: 100vw;
             height: 100vh;
             margin: 0 auto;
-            font-family: Figtree;
+            font-family: Figtree sans-serif;
             background-color: #f7f7f7;
         }
 

@@ -17,8 +17,8 @@ use Peergum\GeoDB\Http\Controllers\StateController;
 |
 */
 
- Route::middleware('auth:sanctum')->group(function() {
-     Route::resource('countries', CountryController::class)->only('index','show');
-     Route::resource('states', StateController::class)->only('index','show');;
-     Route::resource('cities', CityController::class)->only('index','show');;
- });
+Route::middleware('api')->prefix('api')->group(function () {
+    Route::resource('countries', CountryController::class)->only('index', 'show');
+    Route::resource('countries.states', StateController::class)->only('index', 'show');
+    Route::resource('cities', CityController::class)->only('index', 'show');
+});

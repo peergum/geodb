@@ -14,6 +14,12 @@ class Country extends Model
         'name',
         'cc',
         'cc2',
+        'sqkm',
+        'population',
+        'continent',
+        'tld',
+        'currency_code',
+        'currency_name',
         'lang',
     ];
 

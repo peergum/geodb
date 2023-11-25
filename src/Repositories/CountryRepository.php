@@ -7,17 +7,24 @@ use Peergum\GeoDB\Interfaces\CountryRepositoryInterface;
 
 class CountryRepository implements CountryRepositoryInterface
 {
-    public function getAllCountries() {
-        return Country::all();
+    public function getAllCountries(array $fields = ['*'])
+    {
+        return Country::orderBy('name','asc')->get($fields);
     }
 
-    public function getCountryById($countryId) {
-        return Country::where('cc','=',$countryId)
-            ->orWhere('cc2','=',$countryId);
+    public function getCountryById($countryId, array $fields = ['*'])
+    {
+        return Country::where('id', '=', $countryId)
+            ->orWhere('cc', '=', strtoupper($countryId))
+            ->orWhere('cc2', '=', strtoupper($countryId))
+            ->orderBy('name','asc')
+            ->get($fields)
+            ->first();
     }
 
-    public function getCountriesLike($countryName) {
-        return Country::where('name','like', $countryName);
+    public function getCountriesLike($countryName)
+    {
+        return Country::where('name', 'like', "{$countryName}%")->orderBy('name','asc')->get();
     }
 
     public function createCountry(array $countryDetails)
