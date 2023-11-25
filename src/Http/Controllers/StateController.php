@@ -3,16 +3,16 @@
 namespace Peergum\GeoDB\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreStateRequest;
-use App\Http\Requests\UpdateStateRequest;
-use App\Models\State;
-use Peergum\GeoDB\Repositories\StateRepository;
+use Illuminate\Http\Request;
+use Peergum\GeoDB\Models\Country;
+use Peergum\GeoDB\Models\State;
+use Peergum\GeoDB\Repositories\CountryStateRepository;
 
 class StateController extends Controller
 {
-    private StateRepository $stateRepository;
+    private CountryStateRepository $stateRepository;
 
-    public function __construct(StateRepository $stateRepository)
+    public function __construct(CountryStateRepository $stateRepository)
     {
         $this->stateRepository = $stateRepository;
     }
@@ -20,9 +20,22 @@ class StateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Country $country, Request $request)
     {
-        //
+        $filter = $request->get('like', '');
+
+        if (!$filter) {
+            switch ($request->get('type', 'all')) {
+                case 'simple':
+                    $fields = ['id', 'name'];
+                    return response()->json($this->stateRepository->getCountryStates($country, $fields));
+                    break;
+                default:
+                    $fields = ['*'];
+                    return response()->json($this->stateRepository->getCountryStates($country, $fields));
+            }
+        }
+        return response()->json($this->stateRepository->getCountryStatesLike($country, $filter));
     }
 
     /**
@@ -44,7 +57,7 @@ class StateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(State $state)
+    public function show(Country $country, State $state)
     {
         //
     }

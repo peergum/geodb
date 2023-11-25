@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->string('admin2')->nullable()->index();
             $table->string('admin3')->nullable()->index();
             $table->string('admin4')->nullable()->index();
-            $table->unsignedMediumInteger('population')->nullable()->index();
+            $table->unsignedBigInteger('population')->nullable()->index();
             $table->float('elevation')->nullable()->index();
             $table->string('timezone')->nullable()->index();
             $table->foreignId('country_id')->constrained();

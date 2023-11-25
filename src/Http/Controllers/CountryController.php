@@ -3,9 +3,8 @@
 namespace Peergum\GeoDB\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCountryRequest;
-use App\Http\Requests\UpdateCountryRequest;
-use App\Models\Country;
+use Illuminate\Http\Request;
+use Peergum\GeoDB\Models\Country;
 use Peergum\GeoDB\Repositories\CountryRepository;
 
 class CountryController extends Controller
@@ -20,9 +19,22 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->countryRepository->getAllCountries();
+        $filter = $request->get('like', '');
+
+        if (!$filter) {
+            switch ($request->get('type', 'all')) {
+                case 'simple':
+                    $fields = ['id', 'cc', 'name'];
+                    return response()->json($this->countryRepository->getAllCountries($fields));
+                    break;
+                default:
+                    $fields = ['*'];
+                    return response()->json($this->countryRepository->getAllCountries($fields));
+            }
+        }
+        return response()->json($this->countryRepository->getCountriesLike($filter));
     }
 
     /**
@@ -44,9 +56,9 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Country $country)
+    public function show(string $country)
     {
-        //
+        return response()->json($this->countryRepository->getCountryById($country));
     }
 
     /**

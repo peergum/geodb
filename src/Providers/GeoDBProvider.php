@@ -2,9 +2,14 @@
 
 namespace Peergum\GeoDB\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\AboutCommand;
-use Illuminate\Support\ServiceProvider;
-use Peergum\GeoDB\Console\Commands\GeoDBDownload;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Peergum\GeoDB\Console\Commands\GeoDBInstall;
 
 class GeoDBProvider extends ServiceProvider
@@ -29,11 +34,10 @@ class GeoDBProvider extends ServiceProvider
         $this->publishMigrations();
         $this->publishSeeds();
         $this->publishTranslations();
-        $this->publishRoutes();
-        $this->publishViews();
         $this->publishAssets();
+        $this->publishViews();
+        $this->publishRoutes();
         AboutCommand::add('Laravel GeoDB', fn() => ['Version' => GeoDBInstall::VERSION]);
-
     }
 
     /**
@@ -57,17 +61,46 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishRoutes()
     {
-        $this->loadRoutesFrom(__DIR__ . "/../../routes/api.php");
-        $this->loadRoutesFrom(__DIR__ . "/../../routes/web.php");
+        copy(__DIR__.'/../../routes/geodb.php', base_path('routes/geodb.php'));
+        copy(__DIR__.'/../../routes/geodb-api.php', base_path('routes/geodb-api.php'));
+
+        $this->loadRoutesFrom(__DIR__ . "/../../routes/geodb-api.php");
+        $this->loadRoutesFrom(__DIR__ . "/../../routes/geodb.php");
+
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+
+        $this->routes(function () {
+            Route::middleware('api')
+                ->prefix('api')
+                ->group(base_path('routes/geodb-api.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/geodb.php'));
+        });
+
     }
 
     private function publishViews()
     {
         $this->loadViewsFrom(__DIR__ . "/../../resources/views", "geodb");
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/geodb'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/geodb'),
         ]);
 
+        $this->publishVueComponents();
+    }
+
+    private function publishVueComponents()
+    {
+        // Components + Pages...
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components/GeoDB'));
+//        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/GeoDB'));
+
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/js/Components', resource_path('js/Components/GeoDB'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../resources/js/Pages', resource_path('js/Pages/GeoDB'));
     }
 
     private function publishAssets()
@@ -84,7 +117,6 @@ class GeoDBProvider extends ServiceProvider
     {
         $this->commands([
             GeoDBInstall::class,
-            GeoDBDownload::class,
         ]);
     }
 
@@ -93,7 +125,8 @@ class GeoDBProvider extends ServiceProvider
      */
     private function publishTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'geodb');
+//        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'geodb');
+        $this->loadJsonTranslationsFrom(__DIR__ . '/../../lang');
         $this->publishes([
             __DIR__ . '/../../lang' => $this->app->langPath('vendor/geodb')
         ]);
