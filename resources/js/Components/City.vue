@@ -139,7 +139,7 @@ const states = (states) => {
 
 <style scoped>
 .spinner {
-  background-image: url('/vendor/geodb/Pulse-1s-68px.gif');
+  background-image: url('/vendor/geodb/Pulse-1s-68px-blue.gif');
   background-position: center right;
   background-size: 48px 48px;
   background-repeat: no-repeat;

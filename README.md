@@ -4,7 +4,7 @@
 # Laravel GeoDB
 A Laravel package providing geographical information to your site
 
-**Current Version**: 0.1-&alpha;
+**Current Version**: 1.1;
 
 ---
 ## Description
@@ -20,7 +20,7 @@ This package is a work in progress. Please come back soon for more.
 ## Installation
 
 ### 1. Add package
-run `composer require peergum/geodb "^1.02-beta"` in yor laravel site folder
+run `composer require peergum/geodb "^1.1"` in yor laravel site folder
 
 ### 2. Setup package
 Run `art migrate` to install the geodb tables, then:
@@ -44,10 +44,10 @@ If you have inertia/vue installed, you can also use the city search field in the
 DB server and connectivity)
 
 Screenshot without Vue (partial load):
-![img.png](img.png)
+![example_1.png](example_1.png)
 
 Screenshot after Breeze install (partial load):
-![img_1.png](img_1.png)
+![example_2.png](example_2.png)
 
 ## ChangeLog
 See [here](./CHANGELOG.md)
