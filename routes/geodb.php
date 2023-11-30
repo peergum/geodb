@@ -25,7 +25,7 @@ use Peergum\GeoDB\Models\State;
 //
 Route::get('/geodb', function () {
     if (!function_exists('inertia')) {
-        return view('geodb::app', [
+        return view('geodb::geodb', [
             'countries' => Country::count(),
             'states' => State::count(),
             'cities' => City::count(),
