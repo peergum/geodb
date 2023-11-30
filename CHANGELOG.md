@@ -1,5 +1,8 @@
 # Changelog
 
+- 1.02-beta:
+  - fixes to geodb blade
+
 - 1.0-beta:
   - APIs work, could be improved
   - GeoDB Vue page and components operational
