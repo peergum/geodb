@@ -9,10 +9,16 @@ A Laravel package providing geographical information to your site
 ---
 ## Description
 Laravel GeoDB provides your laravel app with a simple way to
-list countries, states, cities, their geolocation or a combination thereof.
+list countries, states, cities, their geolocation or a combination thereof,
+without requiring the implementation of a Google or OpenStreetMaps API.
 
 You can access the information directly from your code,
 through a Facade, or from any reactive view, using internal APIs.
+
+Note that the space used by the database (around 1.6GB for 4.5M cities in
+252 countries) may end costing you more than the monthly fees
+charged by Google. Google may also provide you with better or more
+accurate results.
 
 ## Status
 This package is a work in progress. Please come back soon for more.
