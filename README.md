@@ -23,6 +23,7 @@ This package is a work in progress. Please come back soon for more.
 run `composer require peergum/geodb "^1.02-beta"` in yor laravel site folder
 
 ### 2. Setup package
+Run `art migrate` to install the geodb tables, then:
 - For a full install (all countries), run install script: `art geodb:install` or `art geodb:install all`
 - For a partial install (just a few countries), run with parameters: e.g. `art geodb:install fr gb us`
 to install cities for France, Great Britain and USA.
@@ -39,8 +40,14 @@ If you're using Inertia, re-run `npm run build` in order to update your vite cac
 
 ### 4. Check status
 Go to `/geodb` on your site, to confirm number of countries, states and cities loaded.
-You can also use the city search field in the page to check how fast the response time is (depending on your
+If you have inertia/vue installed, you can also use the city search field in the page to check how fast the response time is (depending on your
 DB server and connectivity)
+
+Screenshot without Vue (partial load):
+![img.png](img.png)
+
+Screenshot after Breeze install (partial load):
+![img_1.png](img_1.png)
 
 ## ChangeLog
 See [here](./CHANGELOG.md)
